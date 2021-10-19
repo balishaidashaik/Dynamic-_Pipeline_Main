@@ -27,8 +27,8 @@
         script-path: <Path to selected groovy script>
         lightweight-checkout: true
     triggers:
-     - pollscm:
-         cron: "* * * * *"
+      - pollscm:
+         cron: '* * * * *'
          ignore-post-commit-hooks: True
     wrappers:
     - build-name:
