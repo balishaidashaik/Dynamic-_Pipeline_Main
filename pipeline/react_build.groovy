@@ -13,9 +13,9 @@ timeout(5) {
     }
 	
     stage("Build/Package the React Application") {
-      nodejs('Node') {
-      sh 'npm run build'
-    }
+      //nodejs('Node') {
+      //sh 'npm run build'
+   // }
       echo("React Application is Built Successfully")
     }
 
