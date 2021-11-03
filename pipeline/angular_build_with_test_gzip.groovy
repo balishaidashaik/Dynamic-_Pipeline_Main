@@ -12,24 +12,24 @@ timeout(5) {
       echo("Node Modules installed successully")
     }
 	  
-    stage("Test the React Application") {
+    stage("Test the AngularJs Application") {
       nodejs('Node') {
       sh 'npm test'
     }
-      echo("React Application is Built Successfully")
+      echo("AngularJs Application is Built Successfully")
     }	 
 	
-    stage("Build/Package the React Application") {
+    stage("Build/Package the AngularJs Application") {
       nodejs('Node') {
       sh 'npm run build'
     }
-      echo("React Application is Built Successfully")
+      echo("AngularJs Application is Built Successfully")
     }
 
  
-    stage("Gzip the React Build") {
+    stage("Gzip the Angular Build") {
       sh("gzip -r ./build")
-      echo("React Application is Built & Compressed Successfully")
+      echo("AngularJs Application is Built & Compressed Successfully")
     }
     
   }
