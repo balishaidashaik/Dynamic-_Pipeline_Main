@@ -19,7 +19,7 @@ timeout(5) {
       echo("AngularJs Application is Built Successfully")
     }	 
 	
-    stage("Build/Package the React Application") {
+    stage("Build/Package the Angularjs Application") {
       nodejs('Node') {
       sh 'npm run build'
     }
