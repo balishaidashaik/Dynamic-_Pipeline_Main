@@ -43,7 +43,7 @@ def writeyaml(obj,str):
    // else:
         return False """
     
-    def selectpipeline(input):
+def selectpipeline(input):
     if input['BuildType'] == 'Angular_Build':
         pipelinescript ='angular_build.groovy'
         return pipelinescript
