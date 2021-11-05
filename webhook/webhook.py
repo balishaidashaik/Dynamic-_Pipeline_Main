@@ -30,7 +30,7 @@ def writeyaml(obj,str):
     yaml.dump(obj,fp)
     return True
 
-//def selectpipeline(input):
+"""def selectpipeline(input):
     //if input['BuildType'] == 'React_Build':
        // pipelinescript ='react_build.groovy'
        // return pipelinescript
@@ -41,7 +41,7 @@ def writeyaml(obj,str):
         //pipelinescript = 'react_build_with_test_gzip.groovy'
         //return pipelinescript
    // else:
-        //return False
+        return False """
     
     def selectpipeline(input):
     if input['BuildType'] == 'Angular_Build':
@@ -84,7 +84,7 @@ def inputfunc(str):
         input=json.load(f)
     return input
 
-//def createreactjob(input,apprepo):
+"""def createreactjob(input,apprepo):
     //pipeline_repo_path=os.path.join(path,config['repo_name'])
     //if os.path.isdir(pipeline_repo_path):
         //gitpull(pipeline_repo_path)
@@ -113,7 +113,7 @@ def inputfunc(str):
             //else:
               //  return ('error writing yaml file')
        // else:
-           // return ('Invalid Pipeline Type')
+           // return ('Invalid Pipeline Type') """
 
         
 def createreactjob(input,apprepo):
@@ -171,7 +171,7 @@ def createspringjob(input,apprepo):
             return ('error writing yaml file')
 
     
-//@app.route('/', methods=['GET','POST'])
+"""@app.route('/', methods=['GET','POST'])
 //def home():
    // data=request.json
     //repo_path=os.path.join(path,request.json['repository']['name'])
@@ -203,7 +203,7 @@ def createspringjob(input,apprepo):
         //else:
           //  return ('Invalid Application Type')
 
-//app.run(host="0.0.0.0")
+//app.run(host="0.0.0.0") """
 
 
 @app.route('/', methods=['GET','POST'])
