@@ -227,7 +227,7 @@ def home():
         input=inputfunc(repo_path)
         if input['ApplicationType'] == 'Angular':
             apprepo=request.json['repository']['clone_url']
-            final_output=createreactjob(input,apprepo)
+            final_output=createangularjob(input,apprepo)
             return json.dumps(final_output)
         elif input['ApplicationType'] == 'Spring':
             apprepo=request.json['repository']['clone_url']
@@ -241,7 +241,7 @@ def home():
         output=inputfunc(repo_path)
         if output['ApplicationType'] == 'Angular':
             apprepo=request.json['repository']['clone_url']
-            final_output=createreactjob(output,apprepo)
+            final_output=createangularjob(output,apprepo)
             return json.dumps(final_output)
         elif output['ApplicationType'] == 'Spring':
             apprepo=request.json['repository']['clone_url']
