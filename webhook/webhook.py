@@ -79,6 +79,18 @@ def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
         break
     return yamlcontent
 
+def modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript):
+    for elem in yamlcontent:
+        elem['job']['name']=input['ApplicationName']
+        elem['job']['parameters'][0]['string']['default']=input['BuildName']
+        elem['job']['parameters'][1]['string']['default']=apprepo
+        elem['job']['parameters'][2]['string']['default']=config['credentials_id']
+        elem['job']['pipeline-scm']['scm'][0]['git']['url']=config['job_git_url']
+        elem['job']['pipeline-scm']['scm'][0]['git']['credentials-id']=config['credentials_id']
+        elem['job']['pipeline-scm']['script-path']='pipeline/'+ pipelinescript
+        break
+    return yamlcontent
+
 def inputfunc(str):
     with open(os.path.join(path,str)+'/pipeline_config.json') as f:
         input=json.load(f)
@@ -116,7 +128,7 @@ def inputfunc(str):
            // return ('Invalid Pipeline Type') """
 
         
-def createreactjob(input,apprepo):
+def createangularjob(input,apprepo):
     pipeline_repo_path=os.path.join(path,config['repo_name'])
     if os.path.isdir(pipeline_repo_path):
         gitpull(pipeline_repo_path)
@@ -124,7 +136,7 @@ def createreactjob(input,apprepo):
         yamlcontent=readyaml(yamlpath)
         pipelinescript=selectpipeline(input)
         if pipelinescript!= False :
-            modifiedyaml=modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript)
+            modifiedyaml=modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript)
             if(writeyaml(modifiedyaml,'./angularjob.yaml')):
                 os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./angularjob.yaml')
                 return ('angular job created')
