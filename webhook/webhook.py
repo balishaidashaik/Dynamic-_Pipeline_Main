@@ -41,7 +41,7 @@ def writeyaml(obj,str):
         //pipelinescript = 'react_build_with_test_gzip.groovy'
         //return pipelinescript
    // else:
-        return False """
+        return False"""
     
 def selectpipeline(input):
     if input['BuildType'] == 'Angular_Build':
@@ -67,7 +67,7 @@ def modifyyamlforspring(yamlcontent,input,apprepo):
         break
     return yamlcontent
 
-def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
+"""def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
     for elem in yamlcontent:
         elem['job']['name']=input['ApplicationName']
         elem['job']['parameters'][0]['string']['default']=input['BuildName']
@@ -77,7 +77,7 @@ def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
         elem['job']['pipeline-scm']['scm'][0]['git']['credentials-id']=config['credentials_id']
         elem['job']['pipeline-scm']['script-path']='pipeline/'+ pipelinescript
         break
-    return yamlcontent
+    return yamlcontent"""
 
 def modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript):
     for elem in yamlcontent:
@@ -125,7 +125,7 @@ def inputfunc(str):
             //else:
               //  return ('error writing yaml file')
        // else:
-           // return ('Invalid Pipeline Type') """
+           // return ('Invalid Pipeline Type')"""
 
         
 def createangularjob(input,apprepo):
@@ -215,7 +215,7 @@ def createspringjob(input,apprepo):
         //else:
           //  return ('Invalid Application Type')
 
-//app.run(host="0.0.0.0") """
+//app.run(host="0.0.0.0")"""
 
 
 @app.route('/', methods=['GET','POST'])
