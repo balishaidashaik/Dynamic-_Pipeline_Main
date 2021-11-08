@@ -150,7 +150,7 @@ def createangularjob(input,apprepo):
         yamlcontent=readyaml(yamlpath)
         pipelinescript=selectpipeline(input)
         if pipelinescript!= False :
-            modifiedyaml=modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript)
+            modifiedyaml=modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript)
             if(writeyaml(modifiedyaml,'./angularjob.yaml')):
                 os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./angularjob.yaml')
                 return ('angular job created')
