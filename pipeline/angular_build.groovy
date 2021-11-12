@@ -20,16 +20,16 @@ timeout(5) {
     }*/
 
     stage('NPM Install') {
-        withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
+        //withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
             sh 'npm install'
-        }
+       // }
     }
 
     stage('Test') {
-        withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
+        //withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
           sh 'ng test --progress=false --watch false'
-        }
-        junit '**/test-results.xml'
+       // }
+       // junit '**/test-results.xml'
     }
 
     stage('Lint') {
@@ -46,11 +46,5 @@ timeout(5) {
         archive 'dist.tar.gz'
     }
 
-    stage('Deploy') {
-        milestone()
-        echo "Deploying..."
-    }
-
-
-}
+ }
 }
