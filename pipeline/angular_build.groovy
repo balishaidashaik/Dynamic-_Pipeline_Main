@@ -25,12 +25,12 @@ timeout(5) {
        // }
     }
 
-    stage('Test') {
+   // stage('Test') {
         //withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
-          sh 'ng test --progress=false --watch false'
+         // sh 'ng test --progress=false --watch false'
        // }
        // junit '**/test-results.xml'
-    }
+    //}
 
     stage('Lint') {
         sh 'ng lint'
