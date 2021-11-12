@@ -15,6 +15,14 @@
         default: <Jenkins Credential ID>
         description: 'git repo credentials'
         name: Credential_ID
+    - string:
+        default: <File Name>
+        description: 'Application File Name'
+        name: FILE_NAME
+    - string:
+        default: <Branch to Commit>
+        description: 'Application Branch to commit'
+        name: Branch_Commit
         
     pipeline-scm:
         scm:
