@@ -1,13 +1,9 @@
 timeout(5) {
   node("master") {
-    stage('Checkout App Source Code') {
-                    steps {
-                        script {
-                                scmCode.gitCheckOut(repo_host,app_branch,DCSE_GitTag_Credential)
-                                echo "Completed App source checkout "
-                            }
-                    }
-                }	
+   stage("Code Check Out") {
+      git branch: 'main', credentialsId: env.Credential_ID, url: 'https://github.com/balishaidashaik/Angularjs-repo.git'
+      echo("${GIT_URL} Repository was successfully cloned.")
+    }	
 	
     stage("Build Node Modules") {
       nodejs('Node') {
