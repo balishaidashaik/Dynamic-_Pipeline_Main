@@ -10,7 +10,7 @@
     - string:
         default: <App Git URL>
         description: 'application git url'
-        name: APP_URL
+        name: GIT_URL
     - string:
         default: <Jenkins Credential ID>
         description: 'git repo credentials'
