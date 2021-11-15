@@ -28,8 +28,8 @@
         lightweight-checkout: true
     triggers:
       - pollscm:
-        cron: '* * * * *'
-        ignore-post-commit-hooks: True
+         cron: '* * * * *'
+         ignore-post-commit-hooks: True
     wrappers:
     - build-name:
         name: "#$BUILD_NUMBER mkdir $BUILD_NAME"
