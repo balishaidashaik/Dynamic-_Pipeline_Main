@@ -12,12 +12,12 @@ timeout(5) {
       echo("Node Modules installed successully")
     }
 	  
-    //stage("Test the AngularJs Application") {
+    stage("Test the AngularJs Application") {
      // nodejs('Node') {
      // sh 'npm test'
    // }
-    //  echo("AngularJs Application is Built Successfully")
-   // }	 
+      echo("AngularJs Application is Built Successfully")
+    }	 
 	
     stage("Build/Package the Angularjs Application") {
       nodejs('Node') {
