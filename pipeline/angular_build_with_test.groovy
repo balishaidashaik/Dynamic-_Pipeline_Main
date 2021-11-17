@@ -16,8 +16,8 @@ timeout(5) {
      // nodejs('Node') {
      / sh 'npm test'
    // }
-      echo("AngularJs Application is Built Successfully")
-    }	 
+    //  echo("AngularJs Application is Built Successfully")
+   // }	 
 	
     stage("Build/Package the Angularjs Application") {
       nodejs('Node') {
