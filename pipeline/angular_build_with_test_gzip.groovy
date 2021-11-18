@@ -28,7 +28,7 @@ timeout(5) {
 
  
     stage("Gzip the Angular Build") {
-      sh("gzip -r ./build")
+      //sh("gzip -r ./build")
       echo("AngularJs Application is Built & Compressed Successfully")
     }
     
