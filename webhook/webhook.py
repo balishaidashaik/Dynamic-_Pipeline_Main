@@ -240,7 +240,7 @@ def home():
     if os.path.isdir(repo_path):
         logging.info("Pulling the Application repository")
         CommonFunctions.gitpull(repo_path)
-        //gitpull(repo_path)
+        """gitpull(repo_path)"""
         input=inputfunc(repo_path)
         if input['ApplicationType'] == 'Angular':
             apprepo=request.json['repository']['clone_url']
