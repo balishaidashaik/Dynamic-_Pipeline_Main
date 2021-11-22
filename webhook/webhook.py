@@ -231,7 +231,7 @@ def createspringjob(input,apprepo):
 def home():
     logging.info('*****************Dynamic DevOps Pipeline Creation*****************') 
     try:
-    data=request.json
+        data=request.json
     repo_path=os.path.join(path,request.json['repository']['name'])
     except Exception as e:
         logging.info(e)
