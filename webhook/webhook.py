@@ -4,6 +4,10 @@ from ruamel.yaml import YAML
 import git
 import json
 import os.path
+import logging
+
+from Applications.SpringApplication import SpringApplication
+from Applications.AngularApplication import AngularApplication
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -29,6 +33,11 @@ def writeyaml(obj,str):
     fp=open(str,"w")
     yaml.dump(obj,fp)
     return True
+
+LOG_FILENAME = 'Info.log'
+logging.basicConfig(filename=LOG_FILENAME, filemode='a', level=logging.INFO,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')  
+logging.info('*****************Dynamic DevOps Pipeline Creation*****************')
+
 
 """def selectpipeline(input):
     //if input['BuildType'] == 'React_Build':
@@ -220,13 +229,22 @@ def createspringjob(input,apprepo):
 
 @app.route('/', methods=['GET','POST'])
 def home():
+    logging.info('*****************Dynamic DevOps Pipeline Creation*****************') 
+    try:
     data=request.json
     repo_path=os.path.join(path,request.json['repository']['name'])
+    except Exception as e:
+        logging.info(e)
+    output = None
+    logging.info("Checking if the Application Repository path is present or not")
     if os.path.isdir(repo_path):
-        gitpull(repo_path)
+        logging.info("Pulling the Application repository")
+        CommonFunctions.gitpull(repo_path)
+        //gitpull(repo_path)
         input=inputfunc(repo_path)
         if input['ApplicationType'] == 'Angular':
             apprepo=request.json['repository']['clone_url']
+        logging.info("Cloning the Application repository")
             final_output=createangularjob(input,apprepo)
             return json.dumps(final_output)
         elif input['ApplicationType'] == 'Spring':
