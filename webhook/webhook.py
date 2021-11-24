@@ -31,7 +31,7 @@ def writeyaml(obj,str):
     yaml.dump(obj,fp)
     return True
 
-"""def selectpipeline(input):
+def selectpipeline(input):
     //if input['BuildType'] == 'React_Build':
        // pipelinescript ='react_build.groovy'
        // return pipelinescript
@@ -42,7 +42,7 @@ def writeyaml(obj,str):
         //pipelinescript = 'react_build_with_test_gzip.groovy'
         //return pipelinescript
    // else:
-        return False"""
+        return False
     
 def selectpipeline(input):
     if input['BuildType'] == 'Angular_Build':
@@ -68,7 +68,7 @@ def modifyyamlforspring(yamlcontent,input,apprepo):
         break
     return yamlcontent
 
-"""def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
+def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
     for elem in yamlcontent:
         elem['job']['name']=input['ApplicationName']
         elem['job']['parameters'][0]['string']['default']=input['BuildName']
@@ -78,7 +78,7 @@ def modifyyamlforspring(yamlcontent,input,apprepo):
         elem['job']['pipeline-scm']['scm'][0]['git']['credentials-id']=config['credentials_id']
         elem['job']['pipeline-scm']['script-path']='pipeline/'+ pipelinescript
         break
-    return yamlcontent"""
+    return yamlcontent
 
 def modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript):
     for elem in yamlcontent:
@@ -97,36 +97,36 @@ def inputfunc(str):
         input=json.load(f)
     return input
 
-"""def createreactjob(input,apprepo):
-    //pipeline_repo_path=os.path.join(path,config['repo_name'])
-    //if os.path.isdir(pipeline_repo_path):
-        //gitpull(pipeline_repo_path)
-        //yamlpath=os.path.join(pipeline_repo_path,"jobs/reactjob.yaml")
-        //yamlcontent=readyaml(yamlpath)
-        //pipelinescript=selectpipeline(input)
-        //if pipelinescript!= False :
-            //modifiedyaml=modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript)
-            //if(writeyaml(modifiedyaml,'./reactjob.yaml')):
-               // os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./reactjob.yaml')
-               // return ('react job created')
-           // else:
-               // return ('error writing yaml file')
-        //else:
-            //return ('Invalid Pipeline Type')
-    //else:
-        //gitclone(path,config['job_git_url'])
-       // yamlpath=os.path.join(pipeline_repo_path,"jobs/reactjob.yaml")
-        //yamlcontent=readyaml(yamlpath)
-        //pipelinescript=selectpipeline(input)
-       // if pipelinescript!= False :
-          //  modifiedyaml=modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript)
-            //if(writeyaml(modifiedyaml,'./reactjob.yaml')):
-                //os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./reactjob.yaml')
-                //return ('react job created')
-            //else:
-              //  return ('error writing yaml file')
-       // else:
-           // return ('Invalid Pipeline Type')"""
+def createreactjob(input,apprepo):
+    pipeline_repo_path=os.path.join(path,config['repo_name'])
+    if os.path.isdir(pipeline_repo_path):
+        gitpull(pipeline_repo_path)
+        yamlpath=os.path.join(pipeline_repo_path,"jobs/reactjob.yaml")
+        yamlcontent=readyaml(yamlpath)
+        pipelinescript=selectpipeline(input)
+        if pipelinescript!= False :
+            modifiedyaml=modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript)
+            if(writeyaml(modifiedyaml,'./reactjob.yaml')):
+                os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./reactjob.yaml')
+                return ('react job created')
+            else:
+                return ('error writing yaml file')
+        else:
+            return ('Invalid Pipeline Type')
+    else:
+        gitclone(path,config['job_git_url'])
+        yamlpath=os.path.join(pipeline_repo_path,"jobs/reactjob.yaml")
+        yamlcontent=readyaml(yamlpath)
+        pipelinescript=selectpipeline(input)
+        if pipelinescript!= False :
+            modifiedyaml=modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript)
+            if(writeyaml(modifiedyaml,'./reactjob.yaml')):
+                os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./reactjob.yaml')
+                return ('react job created')
+            else:
+                return ('error writing yaml file')
+        else:
+            return ('Invalid Pipeline Type')"""
 
         
 def createangularjob(input,apprepo):
@@ -184,39 +184,39 @@ def createspringjob(input,apprepo):
             return ('error writing yaml file')
 
     
-"""@app.route('/', methods=['GET','POST'])
-//def home():
-   // data=request.json
-    //repo_path=os.path.join(path,request.json['repository']['name'])
-    //if os.path.isdir(repo_path):
-       // gitpull(repo_path)
-        //input=inputfunc(repo_path)
-        //if input['ApplicationType'] == 'React':
-           // apprepo=request.json['repository']['clone_url']
-            //final_output=createreactjob(input,apprepo)
-           // return json.dumps(final_output)
-        //elif input['ApplicationType'] == 'Spring':
-           // apprepo=request.json['repository']['clone_url']
-            //final_output=createspringjob(input,apprepo)
-           // return json.dumps(final_output)
-       // else:
-          //  return ('Invalid Application Type')
+@app.route('/', methods=['GET','POST'])
+def home():
+    data=request.json
+    repo_path=os.path.join(path,request.json['repository']['name'])
+    if os.path.isdir(repo_path):
+        gitpull(repo_path)
+        input=inputfunc(repo_path)
+        if input['ApplicationType'] == 'React':
+            apprepo=request.json['repository']['clone_url']
+            final_output=createreactjob(input,apprepo)
+            return json.dumps(final_output)
+        elif input['ApplicationType'] == 'Spring':
+            apprepo=request.json['repository']['clone_url']
+            final_output=createspringjob(input,apprepo)
+            return json.dumps(final_output)
+        else:
+            return ('Invalid Application Type')
 
-  //  else:
-        //gitclone(path,request.json['repository']['clone_url'])
-        //output=inputfunc(repo_path)
-       // if output['ApplicationType'] == 'React':
-            //apprepo=request.json['repository']['clone_url']
-           // final_output=createreactjob(output,apprepo)
-            //return json.dumps(final_output)
-        //elif output['ApplicationType'] == 'Spring':
-          // apprepo=request.json['repository']['clone_url']
-         //   final_output=createspringjob(output,apprepo)
-           // return json.dumps(final_output)
-        //else:
-          //  return ('Invalid Application Type')
+    else:
+        gitclone(path,request.json['repository']['clone_url'])
+        output=inputfunc(repo_path)
+        if output['ApplicationType'] == 'React':
+            apprepo=request.json['repository']['clone_url']
+            final_output=createreactjob(output,apprepo)
+            return json.dumps(final_output)
+        elif output['ApplicationType'] == 'Spring':
+           apprepo=request.json['repository']['clone_url']
+           final_output=createspringjob(output,apprepo)
+            return json.dumps(final_output)
+        else:
+            return ('Invalid Application Type')
 
-//app.run(host="0.0.0.0")"""
+app.run(host="0.0.0.0")
 
 
 @app.route('/', methods=['GET','POST'])
