@@ -32,16 +32,16 @@ def writeyaml(obj,str):
     return True
 
 def selectpipeline(input):
-    //if input['BuildType'] == 'React_Build':
-       // pipelinescript ='react_build.groovy'
-       // return pipelinescript
-   // elif input['BuildType'] == 'React_Build_With_Test':
-        //pipelinescript = 'react_build_with_test.groovy'
-        //return pipelinescript
-   // elif input['BuildType'] == 'React_Build_With_Test_Gzip':
-        //pipelinescript = 'react_build_with_test_gzip.groovy'
-        //return pipelinescript
-   // else:
+    if input['BuildType'] == 'React_Build':
+        pipelinescript ='react_build.groovy'
+        return pipelinescript
+    elif input['BuildType'] == 'React_Build_With_Test':
+        pipelinescript = 'react_build_with_test.groovy'
+        return pipelinescript
+    elif input['BuildType'] == 'React_Build_With_Test_Gzip':
+        pipelinescript = 'react_build_with_test_gzip.groovy'
+        return pipelinescript
+    else:
         return False
     
 def selectpipeline(input):
