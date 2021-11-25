@@ -24,14 +24,14 @@ timeout(5) {
       sh 'npm run'
     }
       echo("AngularJs Application is Built Successfully")
-    }*/
+    }
     
     stage('Build') {
             steps {
                 echo 'Installing Dependencies...'
                 sh 'npm install'
             }
-        }
+        }*/
     stage('Run') {
             steps {
                 echo 'Starting application...'
