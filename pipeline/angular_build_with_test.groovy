@@ -14,7 +14,7 @@ timeout(5) {
 	  
    stage("Test the AngularJs Application") {
      nodejs('Node') {
-     sh 'node test'
+     sh 'npm start'
     }
       echo("AngularJs Application is Built Successfully")
     }	 
