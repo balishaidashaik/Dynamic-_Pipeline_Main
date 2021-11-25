@@ -42,7 +42,7 @@ timeout(5) {
       nodejs('Node') {
       sh 'npm test'
     }
-       echo("Angularjs Test case successfully"
+       echo("Angularjs Test case successfully")
     }
     
   }
