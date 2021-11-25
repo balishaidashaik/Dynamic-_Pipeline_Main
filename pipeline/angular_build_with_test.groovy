@@ -38,12 +38,12 @@ timeout(5) {
                 sh 'npm start'
             }
         }*/
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm test'
-            }
-        }
+    stage("Test the Angular Application") {
+      nodejs('Node') {
+      sh 'npm test'
+    }
+       echo("Angularjs Test case successfully"
+    }
     
   }
 }
