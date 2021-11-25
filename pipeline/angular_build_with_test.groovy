@@ -12,10 +12,10 @@ timeout(5) {
       echo("Node Modules installed successully")
     }
 	  
-    /*stage("Test the AngularJs Application") {
-     // nodejs('Node') {
-     // sh 'npm test'
-   // }
+   stage("Test the AngularJs Application") {
+     nodejs('Node') {
+     sh 'node test'
+    }
       echo("AngularJs Application is Built Successfully")
     }	 
 	
@@ -24,32 +24,6 @@ timeout(5) {
       sh 'npm run'
     }
       echo("AngularJs Application is Built Successfully")
-    }
-    
-    stage('Build') {
-            steps {
-                echo 'Installing Dependencies...'
-                sh 'npm install'
-            }
-        }
-    stage('Run') {
-            steps {
-                echo 'Starting application...'
-                sh 'npm start'
-            }
-        }
-    stage("Test the Angular Application") {
-      nodejs('Node') {
-      sh 'npm test'
-    }
-       echo("Angularjs Test case successfully")
-    }*/
-    stage('Install dependencies') {
-      steps {
-       // sh 'npm install'
-	sh 'ng test --single-run true'
-      }
-    }      
+    }  
   }
-
-}
+ }
