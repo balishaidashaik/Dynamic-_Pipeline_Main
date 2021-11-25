@@ -47,9 +47,9 @@ timeout(5) {
     stage('Install dependencies') {
       steps {
        // sh 'npm install'
-	sh 'ng test --single-run true
+	sh 'ng test --single-run true'
       }
     }      
   }
-}
+
 }
