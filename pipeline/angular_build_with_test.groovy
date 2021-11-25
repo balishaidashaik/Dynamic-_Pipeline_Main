@@ -31,13 +31,13 @@ timeout(5) {
                 echo 'Installing Dependencies...'
                 sh 'npm install'
             }
-        }*/
+        }
     stage('Run') {
             steps {
                 echo 'Starting application...'
                 sh 'npm start'
             }
-        }
+        }*/
         stage('Test') {
             steps {
                 echo 'Testing...'
