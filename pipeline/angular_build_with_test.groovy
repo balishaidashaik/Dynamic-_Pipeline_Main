@@ -43,28 +43,12 @@ timeout(5) {
       sh 'npm test'
     }
        echo("Angularjs Test case successfully")
-    }
+    }*/
     stage('Install dependencies') {
       steps {
-        sh 'npm install'
+       // sh 'npm install'
+	sh 'ng test --single-run true
       }
-    }
-     
-    stage('Test') {
-      steps {
-         sh 'npm test'
-      }
-    }  */
-    stage('Test') {
-      parallel {
-        stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
-        }
-        stage('Unit tests') {
-            steps { sh 'npm run-script test' }
-        }
-      }
-    }
-    
+    }      
   }
 }
