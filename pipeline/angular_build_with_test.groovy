@@ -14,14 +14,14 @@ timeout(5) {
 	  
    stage("Test the AngularJs Application") {
      nodejs('Node') {
-     //sh 'npm test'
+     sh 'ng test'
     }
       echo("AngularJs Application is Built Successfully")
     }	 
 	
     stage("Build/Package the Angularjs Application") {
       nodejs('Node') {
-      sh 'npm build'
+      sh 'ng build'
     }
       echo("AngularJs Application is Built Successfully")
     }  
