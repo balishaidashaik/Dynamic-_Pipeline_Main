@@ -34,6 +34,5 @@ timeout(5) {
       ])
       echo("AngularJs Application is Built Successfully")
     }
-    
     }
 }
