@@ -16,8 +16,6 @@ timeout(5) {
       nodejs('Node') {
       sh 'npm run'
     }
-      echo("AngularJs Application is Built Successfully")
-    }
     stage ("publish to s3") {
      step ([
       $class: 'S3BucketPublisher',
@@ -34,5 +32,8 @@ timeout(5) {
       profileName: 'Dynamic-DevOps-Pipeline-Jenkins-S3',
       dontWaitForConcurrentBuildCompletion: false,
       ])
+      echo("AngularJs Application is Built Successfully")
+    }
+    
     }
 }
