@@ -21,8 +21,8 @@ timeout(5) {
         $class: 'S3BucketPublisher',
         entries: [[
           sourceFile: 'build/libs/*.jar',
-          bucket: 'buildartifacts-dynamic-pipeline-jenkins',
-          selectedRegion: 'us-east-2',
+          bucket: 'dynamics3bucket',
+          selectedRegion: 'ap-south-1',
           noUploadOnFailure: true,
           managedArtifacts: true,
           //flatten: true,
