@@ -18,22 +18,21 @@ timeout(5) {
     }
       echo("AngularJs Application is Built Successfully")
     }
-
     stage ("publish to s3") {
      step ([
-     $class: 'S3BucketPublisher',
-     entries: [[
-     sourceFile: 'build/libs/*.jar',
-     bucket: 'buildartifacts-dynamic-pipeline-jenkins',
-     selectedRegion: 'us-east-2',
-     noUploadOnFailure: true,
-     managedArtifacts: true,
-    //flatten: true,
-     showDirectlyInBrowser: true,
-     keepForever: true,
-     ]],
-    profileName: 'Dynamic-DevOps-Pipeline-Jenkins-S3',
-    dontWaitForConcurrentBuildCompletion: false,
-   ])
-  }
+      $class: 'S3BucketPublisher',
+      entries: [[
+      sourceFile: 'build/libs/*.jar',
+      bucket: 'dynamics3bucket',
+      selectedRegion: 'ap-south-1',
+      noUploadOnFailure: true,
+      managedArtifacts: true,
+      //flatten: true,
+      showDirectlyInBrowser: true,
+      keepForever: true,
+      ]],
+      profileName: 'Dynamic-DevOps-Pipeline-Jenkins-S3',
+      dontWaitForConcurrentBuildCompletion: false,
+      ])
+    }
 }
