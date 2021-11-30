@@ -18,7 +18,6 @@ timeout(5) {
     }
       echo("AngularJs Application is Built Successfully")
     }
-	  [Yesterday 16:37] Sarma Evani, Raghavendra
 
     stage ("publish to s3") {
      step ([
@@ -32,7 +31,7 @@ timeout(5) {
     //flatten: true,
      showDirectlyInBrowser: true,
      keepForever: true,
-    ]],
+     ]],
     profileName: 'Dynamic-DevOps-Pipeline-Jenkins-S3',
     dontWaitForConcurrentBuildCompletion: false,
    ])
