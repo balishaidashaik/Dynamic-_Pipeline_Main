@@ -16,6 +16,11 @@ timeout(5) {
       nodejs('Node') {
       sh 'ng --build'
     }
+    stage("Test the Angular Application") {
+      nodejs('Node') {
+      sh 'ng test'
+    }
+	    
     stage ("publish to s3") {
       step ([
         $class: 'S3BucketPublisher',
