@@ -18,7 +18,7 @@ timeout(5) {
     }
     stage("Test the Angular Application") {
       nodejs('Node') {
-      sh 'ng test'
+      sh 'ng --test'
     }
 	    
     stage ("publish to s3") {
