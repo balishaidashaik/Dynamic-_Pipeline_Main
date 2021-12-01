@@ -38,7 +38,8 @@ timeout(5) {
         dontWaitForConcurrentBuildCompletion: false,
       ])
       echo("AngularJs Application is Built Successfully")
-    }
+     }
+   }
   }
  }
 }
