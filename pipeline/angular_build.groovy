@@ -14,11 +14,11 @@ timeout(5) {
 	
     stage("Build/Package the Angular Application") {
       nodejs('Node') {
-      sh 'ng --build'
+      sh 'ng -build'
     }
     stage("Test the Angular Application") {
       nodejs('Node') {
-      sh 'ng --test'
+      sh 'ng -test'
     }
 	    
     stage ("publish to s3") {
