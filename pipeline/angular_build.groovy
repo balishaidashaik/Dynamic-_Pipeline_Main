@@ -7,7 +7,7 @@ timeout(5) {
 	
    stage("Build Node Modules") {
       nodejs('Node') {
-      sh 'npm install'
+      sh 'npm install  sonarqube-scanner'
     }
       echo("Node Modules installed successully")
     }
@@ -20,6 +20,12 @@ timeout(5) {
       nodejs('Node') {
       sh 'npm test'
     }
+    stage ('Code Analysis') {
+      nodejs('Node') {
+      sh 'npm run sonar'
+    }
+   }
+
 	    
     stage ("publish to s3") {
       step ([
