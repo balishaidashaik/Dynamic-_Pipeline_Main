@@ -1,5 +1,5 @@
 timeout(5) {
-  node {
+  node("master") {
    stage("Code Check Out") {
 	   git branch: 'main', credentialsId: env.Credential_ID, url: '${APP_URL}'
       echo("${APP_URL} Repository was successfully cloned.")
