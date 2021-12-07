@@ -7,7 +7,7 @@ timeout(5) {
 	
    stage("Build Node Modules") {
       nodejs('Node') {
-      sh 'npm install  sonarqube-scanner'
+      sh 'npm install sonarqube-scanner'
     }
       echo("Node Modules installed successully")
     }
@@ -32,8 +32,8 @@ timeout(5) {
         $class: 'S3BucketPublisher',
         entries: [[
           sourceFile: 'build/libs/*.jar',
-          bucket: 'dynamics3bucket',
-          selectedRegion: 'ap-south-1',
+          bucket: 'dynamic-pipeline',
+          selectedRegion: 'us-east-2',
           noUploadOnFailure: true,
           managedArtifacts: true,
           //flatten: true,
