@@ -5,7 +5,7 @@ timeout(5) {
       echo("${APP_URL} Repository was successfully cloned.")
     }	
 	
-   stage("Build Node Modules") {
+    stage("Build Node Modules") {
       nodejs('Node') {
       sh 'npm install sonarqube-scanner'
     }
