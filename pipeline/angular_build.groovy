@@ -31,9 +31,9 @@ timeout(5) {
       step ([
         $class: 'S3BucketPublisher',
         entries: [[
-          sourceFile: 'build/libs/*.jar',
-          bucket: 'dynamic-pipeline',
-          selectedRegion: 'us-east-2',
+          sourceFile: '',
+          bucket: 'dynamics3bucket',
+          selectedRegion: 'us-east-1',
           noUploadOnFailure: true,
           managedArtifacts: true,
           //flatten: true,
