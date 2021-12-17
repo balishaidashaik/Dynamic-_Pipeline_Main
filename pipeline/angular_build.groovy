@@ -1,8 +1,8 @@
 pipeline {
      agent any
- stages {
-    stage("Code Check Out") {
-      steps {
+     stages{
+       stage("Code Check Out") {
+        steps {
          git branch: 'main', credentialsId: env.Credential_ID, url: '${APP_URL}'
          echo("${APP_URL} Repository was successfully cloned.")
     }
@@ -23,7 +23,7 @@ pipeline {
     }
    }
   }
-   stage("Build/Package the Angular Application") {
+   stage("Test the Angular Application") {
      steps{
         nodejs('Node') {
         bat 'ng test'
