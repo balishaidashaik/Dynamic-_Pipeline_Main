@@ -26,7 +26,7 @@ pipeline {
    stage("Test the Angular Application") {
      steps{
         nodejs('Node') {
-        bat 'ng test'
+        bat 'ng --test'
     }
    }
   }
