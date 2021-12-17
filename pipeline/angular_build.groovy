@@ -23,6 +23,13 @@ pipeline {
     }
    }
   }
+   stage("Build/Package the Angular Application") {
+     steps{
+        nodejs('Node') {
+        bat 'ng test'
+    }
+   }
+  }
 	
     /*stage("Build Node Modules") {
       nodejs('Node') {
