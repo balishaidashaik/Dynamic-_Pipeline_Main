@@ -1,11 +1,15 @@
-timeout(5) {
-  node("master") {
+pipeline {
+     agent any
+ stages {
     stage("Code Check Out") {
-      git branch: 'main', credentialsId: env.Credential_ID, url: '${APP_URL}'
-      echo("${APP_URL} Repository was successfully cloned.")
-    }	
+      steps {
+         git branch: 'main', credentialsId: env.Credential_ID, url: '${APP_URL}'
+         echo("${APP_URL} Repository was successfully cloned.")
+    }
+   }
+	    
 	
-    stage("Build Node Modules") {
+    /*stage("Build Node Modules") {
       nodejs('Node') {
       sh 'npm install sonarqube-scanner'
     }
@@ -46,6 +50,7 @@ timeout(5) {
       echo("AngularJs Application is Built Successfully")
      }
    }
-  }
+  } */
+	 
  }
 }
