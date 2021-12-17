@@ -7,7 +7,15 @@ pipeline {
          echo("${APP_URL} Repository was successfully cloned.")
     }
    }
-	    
+	
+   stage("Build Node Modules") {
+     steps{
+        nodejs('Node') {
+        bat 'npm install'
+    }
+        echo("Node Modules installed successully")
+   }
+ }
 	
     /*stage("Build Node Modules") {
       nodejs('Node') {
