@@ -22,6 +22,7 @@ pipeline {
         bat 'ng build'
     }
    }
+  }
 	
     /*stage("Build Node Modules") {
       nodejs('Node') {
