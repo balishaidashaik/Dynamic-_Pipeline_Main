@@ -16,6 +16,12 @@ pipeline {
         echo("Node Modules installed successully")
    }
  }
+   stage("Build/Package the Angular Application") {
+     steps{
+        nodejs('Node') {
+        bat 'ng build'
+    }
+   }
 	
     /*stage("Build Node Modules") {
       nodejs('Node') {
