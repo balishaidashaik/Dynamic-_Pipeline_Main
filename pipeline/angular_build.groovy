@@ -11,7 +11,7 @@ pipeline {
    stage("Build Node Modules") {
      steps{
         nodejs('Node') {
-        bat 'npm install'
+        sh 'npm install'
     }
         echo("Node Modules installed successully")
    }
@@ -19,14 +19,14 @@ pipeline {
    stage("Build/Package the Angular Application") {
      steps{
         nodejs('Node') {
-        bat 'ng build'
+        sh 'ng build'
     }
    }
   }
    stage("Test the Angular Application") {
      steps{
         nodejs('Node') {
-        bat 'ng --test'
+        sh 'ng --test'
     }
    }
   }
