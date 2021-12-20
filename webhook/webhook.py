@@ -211,9 +211,9 @@ def home():
         elif output['ApplicationType'] == 'Spring':
            apprepo=request.json['repository']['clone_url']
            final_output=createspringjob(output,apprepo)
-            return json.dumps(final_output)
+           return json.dumps(final_output)
         else:
-            return ('Invalid Application Type')
+           return ('Invalid Application Type')
 
 app.run(host="0.0.0.0")
 
