@@ -218,7 +218,7 @@ def home():
 app.run(host="0.0.0.0")
 
 
-"""@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def home():
     
     data=request.json
@@ -252,4 +252,4 @@ def home():
         else:
             return ('Invalid Application Type')
 
-app.run(host="0.0.0.0")"""
+app.run(host="0.0.0.0")
