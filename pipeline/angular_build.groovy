@@ -38,23 +38,16 @@ pipeline {
                     echo "Completed Packaging artifacts"
                 }
             }
-        }
+        }t
+    stage('Publish files to Nexus') {
+            steps {
+                echo "Started uploading artifacts to Nexus repository"
+                nexusArtifactUploader artifacts: [[artifactId: 'angular-helloworld', classifier: '', file: 'dist.zip', type: 'zip']], credentialsId: '01457bec-bf49-42bf-9b5f-a15944b135c4', groupId: 'com.angular', nexusUrl: '54.197.69.58:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'angularapp-artifacts', version: '5.0.0'
+                echo "Completed uploading artifacts to Nexus repository"
+            }
+        } 
 	
-    /*stage("Build Node Modules") {
-      nodejs('Node') {
-      sh 'npm install sonarqube-scanner'
-    }
-      echo("Node Modules installed successully")
-    }
-	
-    
-    
-    stage ('Code Analysis') {
-      nodejs('Node') {
-      sh 'npm run sonar'
-    }
-   }*/
-
+   
 	    
     stage ("publish to s3") {
      steps {
