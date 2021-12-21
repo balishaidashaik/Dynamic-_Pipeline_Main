@@ -47,19 +47,13 @@ pipeline {
       echo("Node Modules installed successully")
     }
 	
-    stage("Build/Package the Angular Application") {
-      nodejs('Node') {
-      sh 'ng build'
-    }
-    stage("Test the Angular Application") {
-      nodejs('Node') {
-      sh 'ng test'
-    }
+    
+    
     stage ('Code Analysis') {
       nodejs('Node') {
       sh 'npm run sonar'
     }
-   }
+   }*/
 
 	    
     stage ("publish to s3") {
@@ -67,7 +61,7 @@ pipeline {
         $class: 'S3BucketPublisher',
         entries: [[
           sourceFile: '',
-          bucket: 'dynamics3bucket',
+          bucket: 'dynamicnodes3bucket',
           selectedRegion: 'us-east-1',
           noUploadOnFailure: true,
           managedArtifacts: true,
@@ -75,13 +69,11 @@ pipeline {
           showDirectlyInBrowser: true,
           keepForever: true,
         ]],
-        profileName: 'Dynamic-DevOps-Pipeline-Jenkins-S3',
+        profileName: 'dynamicpipeline -artifacts',
         dontWaitForConcurrentBuildCompletion: false,
       ])
       echo("AngularJs Application is Built Successfully")
      }
-   }
-  } */
 	 
  }
 }
