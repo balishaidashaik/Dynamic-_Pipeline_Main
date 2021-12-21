@@ -38,7 +38,7 @@ pipeline {
                     echo "Completed Packaging artifacts"
                 }
             }
-        }t
+        }
     stage('Publish files to Nexus') {
             steps {
                 echo "Started uploading artifacts to Nexus repository"
