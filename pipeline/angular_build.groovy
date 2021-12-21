@@ -57,10 +57,11 @@ pipeline {
 
 	    
     stage ("publish to s3") {
-      step ([
+     steps {
+       step ([
         $class: 'S3BucketPublisher',
         entries: [[
-          sourceFile: '',
+          sourceFile: 'dist.zip',
           bucket: 'dynamicnodes3bucket',
           selectedRegion: 'us-east-1',
           noUploadOnFailure: true,
@@ -74,6 +75,6 @@ pipeline {
       ])
       echo("AngularJs Application is Built Successfully")
      }
-	 
+    }
  }
 }
