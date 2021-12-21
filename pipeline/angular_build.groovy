@@ -30,6 +30,15 @@ pipeline {
     }
    }
   }
+   stage ('Packaging Artifacts') {
+            steps {
+                nodejs('Node') {
+                    echo "Started Packaging artifacts"
+                    sh 'zip -r "dist.zip" dist/'
+                    echo "Completed Packaging artifacts"
+                }
+            }
+        }
 	
     /*stage("Build Node Modules") {
       nodejs('Node') {
