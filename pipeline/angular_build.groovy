@@ -42,7 +42,7 @@ pipeline {
     stage('Publish files to Nexus') {
             steps {
                 echo "Started uploading artifacts to Nexus repository"
-                nexusArtifactUploader artifacts: [[artifactId: 'angular-helloworld', classifier: '', file: 'dist.zip', type: 'zip']], credentialsId: '01457bec-bf49-42bf-9b5f-a15944b135c4', groupId: 'com.angular', nexusUrl: '54.197.69.58:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'angularapp-artifacts', version: '5.0.0'
+                nexusArtifactUploader artifacts: [[artifactId: 'angular-helloworld', classifier: '', file: 'dist.zip', type: 'zip']], credentialsId: '01457bec-bf49-42bf-9b5f-a15944b135c4', groupId: 'com.angular', nexusUrl: '23.20.71.205:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'angular-hosted', version: '5.0.0'
                 echo "Completed uploading artifacts to Nexus repository"
             }
         } 
