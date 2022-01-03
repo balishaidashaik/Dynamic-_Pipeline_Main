@@ -46,13 +46,7 @@ pipeline {
                 //echo "Completed uploading artifacts to Nexus repository"
            // }
         //} 
-    stage('Publish files to Nexus') {
-	    steps {
-		    sh 'npm publish'
-	    }
-    }
-   
-	    
+    	    
     stage ("publish to s3") {
      steps {
        step ([
@@ -72,6 +66,12 @@ pipeline {
       ])
       echo("AngularJs Application is Built Successfully")
      }
+    }
+    
+    stage('Publish files to Nexus') {
+	    steps {
+		    sh 'npm publish'
+	    }
     }
  }
 }
