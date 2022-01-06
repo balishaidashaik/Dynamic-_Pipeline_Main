@@ -54,7 +54,7 @@ pipeline {
         entries: [[
           sourceFile: 'dist.zip',
           bucket: 'dynamicnodes3bucket',
-          selectedRegion: 'us-east-1',
+          selectedRegion: 'us-east-2',
           noUploadOnFailure: true,
           managedArtifacts: true,
           //flatten: true,
