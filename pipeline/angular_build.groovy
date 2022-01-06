@@ -61,7 +61,7 @@ pipeline {
           showDirectlyInBrowser: true,
           keepForever: true,
         ]],
-        profileName: 'dynamicpipeline -artifacts',
+        profileName: 'Dynamic-DevOps-Pipeline-Jenkins-S3',
         dontWaitForConcurrentBuildCompletion: false,
       ])
       echo("AngularJs Application is Built Successfully")
