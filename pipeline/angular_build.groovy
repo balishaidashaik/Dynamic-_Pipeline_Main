@@ -53,7 +53,7 @@ pipeline {
         $class: 'S3BucketPublisher',
         entries: [[
           sourceFile: 'dist.zip',
-          bucket: 'dynamicnodes3bucket',
+          bucket: 'dynamic-s3bucket',
           selectedRegion: 'us-east-2',
           noUploadOnFailure: true,
           managedArtifacts: true,
