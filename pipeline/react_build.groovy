@@ -63,7 +63,7 @@ pipeline {
                     $class: 'S3BucketPublisher',
                     entries: [[
                         sourceFile: 'build.zip',
-                        bucket: 'buildartifacts-dynamic-pipeline-jenkins',
+                        bucket: 'dynamic-s3bucket',
                         selectedRegion: 'us-east-2',
                         noUploadOnFailure: true,
                         managedArtifacts: true,
