@@ -39,14 +39,7 @@ pipeline {
                 }
             }
         }
-   // stage('Publish files to Nexus') {
-            //steps {
-                //echo "Started uploading artifacts to Nexus repository"
-                //nexusArtifactUploader artifacts: [[artifactId: 'angular-helloworld', classifier: '', file: 'dist.zip', type: 'zip']], credentialsId: '01457bec-bf49-42bf-9b5f-a15944b135c4', groupId: 'com.angular', nexusUrl: '23.20.71.205:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'angular-hosted', version: '5.0.0'
-	        //nexusArtifactUploader credentialsId: 'bf522a9d-044a-4dd2-9f9f-e1a93b51a560', groupId: '1', nexusUrl: '18.217.122.128:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'Angular-hosted', version: '1.0'
-                //echo "Completed uploading artifacts to Nexus repository"
-           // }
-        //} 
+   
     	    
     stage ("publish to s3") {
      steps {
@@ -74,5 +67,13 @@ pipeline {
 		    sh 'npm publish'
 	    }
     }
+     stage('Publish files to Nexus') {
+            steps {
+                echo "Started uploading artifacts to Nexus repository"
+                //nexusArtifactUploader artifacts: [[artifactId: 'angular-helloworld', classifier: '', file: 'dist.zip', type: 'zip']], credentialsId: '01457bec-bf49-42bf-9b5f-a15944b135c4', groupId: 'com.angular', nexusUrl: '23.20.71.205:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'angular-hosted', version: '5.0.0'
+	        nexusArtifactUploader credentialsId: 'bf522a9d-044a-4dd2-9f9f-e1a93b51a560', groupId: '1', nexusUrl: '18.217.122.128:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'Angular-hosted', version: '1.0'
+                echo "Completed uploading artifacts to Nexus repository"
+            }
+        } 
  }
 }
