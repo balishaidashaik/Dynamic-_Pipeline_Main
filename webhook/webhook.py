@@ -56,6 +56,20 @@ def selectpipeline(input):
         return pipelinescript
     else:
         return False
+    
+def selectpipeline(input):
+    if input['BuildType'] == 'dotnet_Build':
+        pipelinescript ='dotnet_build.groovy'
+        return pipelinescript
+    elif input['BuildType'] == 'dotnet_Build_With_Test':
+        pipelinescript = 'dotnet_build_with_test.groovy'
+        return pipelinescript
+    elif input['BuildType'] == 'dotnet_Build_With_Test_Gzip':
+        pipelinescript = 'dotnet_build_with_test_gzip.groovy'
+        return pipelinescript
+    else:
+        return False
+
 
 def modifyyamlforspring(yamlcontent,input,apprepo):
     for elem in yamlcontent:
@@ -67,6 +81,20 @@ def modifyyamlforspring(yamlcontent,input,apprepo):
         elem['job']['scm'][0]['git']['url']=apprepo    
         break
     return yamlcontent
+
+def modifyyamlfordotnet(yamlcontent,input,apprepo,pipelinescript):
+    for elem in yamlcontent:
+        elem['job']['name']=input['ApplicationName']
+        elem['job']['parameters'][0]['string']['default']=input['BuildName']
+        elem['job']['parameters'][1]['string']['default']=apprepo
+        elem['job']['parameters'][2]['string']['default']=config['credentials_id']
+        elem['job']['pipeline-scm']['scm'][0]['git']['url']=config['job_git_url']
+        elem['job']['pipeline-scm']['scm'][0]['git']['credentials-id']=config['credentials_id']
+        elem['job']['pipeline-scm']['script-path']='pipeline/'+ pipelinescript
+        break
+    return yamlcontent
+
+
 
 """def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
     for elem in yamlcontent:
@@ -159,6 +187,37 @@ def createangularjob(input,apprepo):
         else:
             return ('Invalid Pipeline Type')
         
+def createdotnetjob(input,apprepo):
+    pipeline_repo_path=os.path.join(path,config['repo_name'])
+    if os.path.isdir(pipeline_repo_path):
+        gitpull(pipeline_repo_path)
+        yamlpath=os.path.join(pipeline_repo_path,"jobs/dotnetjob.yaml")
+        yamlcontent=readyaml(yamlpath)
+        pipelinescript=selectpipeline(input)
+        if pipelinescript!= False :
+            modifiedyaml=modifyyamlfordotnet(yamlcontent,input,apprepo,pipelinescript)
+            if(writeyaml(modifiedyaml,'./dotnet.yaml')):
+                os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./dotnetjob.yaml')
+                return ('dotnet job created')
+            else:
+                return ('error writing yaml file')
+        else:
+            return ('Invalid Pipeline Type')
+    else:
+        gitclone(path,config['job_git_url'])
+        yamlpath=os.path.join(pipeline_repo_path,"jobs/dotnetjob.yaml")
+        yamlcontent=readyaml(yamlpath)
+        pipelinescript=selectpipeline(input)
+        if pipelinescript!= False :
+            modifiedyaml=modifyyamlfordotnet(yamlcontent,input,apprepo,pipelinescript)
+            if(writeyaml(modifiedyaml,'./dotnetjob.yaml')):
+                os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./dotnetjob.yaml')
+                return ('dotnet job created')
+            else:
+                return ('error writing yaml file')
+        else:
+            return ('Invalid Pipeline Type')
+        
 def createspringjob(input,apprepo):
     pipeline_repo_path=os.path.join(path,config['repo_name'])
     if os.path.isdir(pipeline_repo_path):
@@ -218,7 +277,7 @@ def home():
 app.run(host="0.0.0.0")"""
 
 
-@app.route('/', methods=['GET','POST'])
+"""@app.route('/', methods=['GET','POST'])
 def home():
     
     data=request.json
@@ -251,5 +310,40 @@ def home():
             return json.dumps(final_output)
         else:
             return ('Invalid Application Type')
+
+app.run(host="0.0.0.0")"""
+
+
+@app.route('/', methods=['GET','POST'])
+def home():
+    data=request.json
+    repo_path=os.path.join(path,request.json['repository']['name'])
+    output = None
+    if os.path.isdir(repo_path):
+        gitpull(repo_path)
+        output=inputfunc(repo_path)
+    else:
+        gitclone(path,request.json['repository']['clone_url'])
+        output=inputfunc(repo_path)
+    
+    if output['ApplicationType'] == 'React':
+        apprepo=request.json['repository']['clone_url']
+        final_output=createreactjob(output,apprepo)
+        return json.dumps(final_output)
+    elif output['ApplicationType'] == 'Spring':
+        apprepo=request.json['repository']['clone_url']
+        final_output=createspringjob(output,apprepo)
+        return json.dumps(final_output)
+    elif output['ApplicationType'] == 'Angular':
+        apprepo=request.json['repository']['clone_url']
+        final_output=createangularjob(output,apprepo)
+        return json.dumps(final_output)
+    elif output['ApplicationType'] == 'dotnet':
+            apprepo=request.json['repository']['clone_url']
+            final_output=createdotnetjob(input,apprepo)
+            return json.dumps(final_output)
+    else:
+        return ('Invalid Application Type')
+
 
 app.run(host="0.0.0.0")
