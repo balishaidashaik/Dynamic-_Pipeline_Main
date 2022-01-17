@@ -57,7 +57,7 @@ def selectpipeline(input):
     else:
         return False
     
-def selectpipeline(input):
+"""def selectpipeline(input):
     if input['BuildType'] == 'dotnet_Build':
         pipelinescript ='dotnet_build.groovy'
         return pipelinescript
@@ -68,7 +68,7 @@ def selectpipeline(input):
         pipelinescript = 'dotnet_build_with_test_gzip.groovy'
         return pipelinescript
     else:
-        return False
+        return False"""
 
 
 def modifyyamlforspring(yamlcontent,input,apprepo):
@@ -82,7 +82,7 @@ def modifyyamlforspring(yamlcontent,input,apprepo):
         break
     return yamlcontent
 
-def modifyyamlfordotnet(yamlcontent,input,apprepo,pipelinescript):
+"""def modifyyamlfordotnet(yamlcontent,input,apprepo,pipelinescript):
     for elem in yamlcontent:
         elem['job']['name']=input['ApplicationName']
         elem['job']['parameters'][0]['string']['default']=input['BuildName']
@@ -92,7 +92,7 @@ def modifyyamlfordotnet(yamlcontent,input,apprepo,pipelinescript):
         elem['job']['pipeline-scm']['scm'][0]['git']['credentials-id']=config['credentials_id']
         elem['job']['pipeline-scm']['script-path']='pipeline/'+ pipelinescript
         break
-    return yamlcontent
+    return yamlcontent"""
 
 
 
@@ -187,7 +187,7 @@ def createangularjob(input,apprepo):
         else:
             return ('Invalid Pipeline Type')
         
-def createdotnetjob(input,apprepo):
+"""def createdotnetjob(input,apprepo):
     pipeline_repo_path=os.path.join(path,config['repo_name'])
     if os.path.isdir(pipeline_repo_path):
         gitpull(pipeline_repo_path)
@@ -216,7 +216,7 @@ def createdotnetjob(input,apprepo):
             else:
                 return ('error writing yaml file')
         else:
-            return ('Invalid Pipeline Type')
+            return ('Invalid Pipeline Type')"""
         
 def createspringjob(input,apprepo):
     pipeline_repo_path=os.path.join(path,config['repo_name'])
