@@ -338,7 +338,7 @@ def home():
         apprepo=request.json['repository']['clone_url']
         final_output=createangularjob(output,apprepo)
         return json.dumps(final_output)
-    elif output['ApplicationType'] == 'Dotnet':
+    elif output['ApplicationType'] == 'dotnet':
             apprepo=request.json['repository']['clone_url']
             final_output=createdotnetjob(input,apprepo)
             return json.dumps(final_output)
