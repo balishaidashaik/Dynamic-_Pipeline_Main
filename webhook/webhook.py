@@ -58,7 +58,7 @@ def writeyaml(obj,str):
         return False"""
     
 def selectpipeline(input):
-    if input['BuildType'] == 'dotnet':
+    if input['BuildType'] == 'dotnet_build':
         pipelinescript ='dotnet.groovy'
         return pipelinescript
     elif input['BuildType'] == 'dotnet_Build_With_Test':
