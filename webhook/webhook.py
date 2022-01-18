@@ -58,7 +58,7 @@ def selectpipeline(input):
         return False
     
 def selectpipeline(input):
-    if input['BuildType'] == 'Dotnet_Build':
+    if input['BuildType'] == 'dotnet_Build':
         pipelinescript ='dotnet_build.groovy'
         return pipelinescript
     elif input['BuildType'] == 'dotnet_Build_With_Test':
