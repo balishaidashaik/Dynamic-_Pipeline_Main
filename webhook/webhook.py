@@ -44,7 +44,7 @@ def writeyaml(obj,str):
     else:
         return False"""
     
-def selectpipeline(input):
+"""def selectpipeline(input):
     if input['BuildType'] == 'Angular_Build':
         pipelinescript ='angular_build.groovy'
         return pipelinescript
@@ -55,7 +55,7 @@ def selectpipeline(input):
         pipelinescript = 'angular_build_with_test_gzip.groovy'
         return pipelinescript
     else:
-        return False
+        return False"""
     
 def selectpipeline(input):
     if input['BuildType'] == 'dotnet':
@@ -71,7 +71,7 @@ def selectpipeline(input):
         return False
 
 
-def modifyyamlforspring(yamlcontent,input,apprepo):
+"""def modifyyamlforspring(yamlcontent,input,apprepo):
     for elem in yamlcontent:
         elem['job']['name']=input['ApplicationName']
         elem['job']['display-name']=input['BuildName']
@@ -80,7 +80,7 @@ def modifyyamlforspring(yamlcontent,input,apprepo):
         elem['job']['publishers'][0]['archive']['artifacts']=input['build_artifact_path']
         elem['job']['scm'][0]['git']['url']=apprepo    
         break
-    return yamlcontent
+    return yamlcontent"""
 
 def modifyyamlfordotnet(yamlcontent,input,apprepo,pipelinescript):
     for elem in yamlcontent:
@@ -218,7 +218,7 @@ def createdotnetjob(input,apprepo):
         else:
             return ('Invalid Pipeline Type')
         
-def createspringjob(input,apprepo):
+"""def createspringjob(input,apprepo):
     pipeline_repo_path=os.path.join(path,config['repo_name'])
     if os.path.isdir(pipeline_repo_path):
         gitpull(pipeline_repo_path)
@@ -239,7 +239,7 @@ def createspringjob(input,apprepo):
             os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./springmavenjob.yaml')
             return ('spring job created')
         else:
-            return ('error writing yaml file')
+            return ('error writing yaml file')"""
 
     
 """@app.route('/', methods=['GET','POST'])
