@@ -67,7 +67,7 @@ pipeline {
 		    sh 'npm publish'
 	    }
     }
-    stage('Publish files to Nexus') {
+    stage('Publish files to Nexus Artifacts') {
             steps {
                 echo "Started uploading artifacts to Nexus repository"
                 nexusArtifactUploader credentialsId: '2869fc27-b947-42e9-8fc6-3f93fcc8dece', groupId: 'com.angular', nexusUrl: '18.223.156.120:8395', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://18.223.156.120:8395/repository/npm-private/', version: '3.37.3-02'
