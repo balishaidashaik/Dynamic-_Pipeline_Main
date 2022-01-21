@@ -1,7 +1,7 @@
 pipeline {
-     agent {
-	  label 'slave'
-     }
+     agent any
+	  
+     
      stages{
        stage("Code Check Out") {
         steps {
