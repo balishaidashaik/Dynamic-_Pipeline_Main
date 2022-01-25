@@ -21,7 +21,7 @@
         - git:
             url: <Pipeline Git Url>
             branches:
-              - '*/main'
+              - '*/master'
             clean: true
             credentials-id: <git credentials Id (Configured in Jenkins)>
         script-path: <Path to selected groovy script>
