@@ -66,9 +66,10 @@ pipeline {
     
     stage('Publish files to Nexus') {
 	    steps {
-		    sh 'npm login --registry=http://18.223.156.120:8395/repository/npm-private/'
+		    //sh 'npm login --registry=http://18.223.156.120:8395/repository/npm-private/'
+		    //sh 'npm publish --access public'
+		    sh 'npm-cli-login -u npmuser -p npmuser123 -e npmuser@gmail.com -r http://18.223.156.120:8395/repository/npm-private/'
 		    sh 'npm publish --access public'
-		   
 	    }
     }
     /*stage('Publish files to Nexus Artifacts') {
