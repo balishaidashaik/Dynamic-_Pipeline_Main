@@ -66,7 +66,8 @@ pipeline {
     
     stage('Publish files to Nexus') {
 	    steps {
-		    sh 'npm publish'
+		    sh 'npm publish --access public --registry =http://18.223.156.120:8395/repository/npm-private/'
+		   
 	    }
     }
     /*stage('Publish files to Nexus Artifacts') {
