@@ -242,7 +242,7 @@ def createreactjob(input,apprepo):
             return ('error writing yaml file')"""
 
     
-"""@app.route('/', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def home():
     data=request.json
     repo_path=os.path.join(path,request.json['repository']['name'])
@@ -274,7 +274,7 @@ def home():
         else:
            return ('Invalid Application Type')
 
-app.run(host="0.0.0.0")"""
+app.run(host="0.0.0.0")
 
 
 """@app.route('/', methods=['GET','POST'])
