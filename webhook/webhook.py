@@ -272,9 +272,9 @@ def home():
            final_output=createspringjob(output,apprepo)
            return json.dumps(final_output)
         else:
-           return ('Invalid Application Type')"""
+           return ('Invalid Application Type')
 
-app.run(host="0.0.0.0")
+app.run(host="0.0.0.0")"""
 
 
 """@app.route('/', methods=['GET','POST'])
