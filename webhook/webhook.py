@@ -31,7 +31,7 @@ def writeyaml(obj,str):
     yaml.dump(obj,fp)
     return True
 
-def selectpipeline(input):
+"""def selectpipeline(input):
     if input['BuildType'] == 'React_Build':
         pipelinescript ='react_build.groovy'
         return pipelinescript
@@ -42,9 +42,9 @@ def selectpipeline(input):
         pipelinescript = 'react_build_with_test_gzip.groovy'
         return pipelinescript
     else:
-        return False
+        return False"""
     
-"""def selectpipeline(input):
+def selectpipeline(input):
     if input['BuildType'] == 'Angular_Build':
         pipelinescript ='angular_build.groovy'
         return pipelinescript
@@ -55,7 +55,7 @@ def selectpipeline(input):
         pipelinescript = 'angular_build_with_test_gzip.groovy'
         return pipelinescript
     else:
-        return False"""
+        return False
     
 """def selectpipeline(input):
     if input['BuildType'] == 'dotnet_build':
@@ -96,19 +96,7 @@ def selectpipeline(input):
 
 
 
-def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
-    for elem in yamlcontent:
-        elem['job']['name']=input['ApplicationName']
-        elem['job']['parameters'][0]['string']['default']=input['BuildName']
-        elem['job']['parameters'][1]['string']['default']=apprepo
-        elem['job']['parameters'][2]['string']['default']=config['credentials_id']
-        elem['job']['pipeline-scm']['scm'][0]['git']['url']=config['job_git_url']
-        elem['job']['pipeline-scm']['scm'][0]['git']['credentials-id']=config['credentials_id']
-        elem['job']['pipeline-scm']['script-path']='pipeline/'+ pipelinescript
-        break
-    return yamlcontent
-
-"""def modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript):
+"""def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
     for elem in yamlcontent:
         elem['job']['name']=input['ApplicationName']
         elem['job']['parameters'][0]['string']['default']=input['BuildName']
@@ -120,12 +108,24 @@ def modifyyamlforreact(yamlcontent,input,apprepo,pipelinescript):
         break
     return yamlcontent"""
 
+def modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript):
+    for elem in yamlcontent:
+        elem['job']['name']=input['ApplicationName']
+        elem['job']['parameters'][0]['string']['default']=input['BuildName']
+        elem['job']['parameters'][1]['string']['default']=apprepo
+        elem['job']['parameters'][2]['string']['default']=config['credentials_id']
+        elem['job']['pipeline-scm']['scm'][0]['git']['url']=config['job_git_url']
+        elem['job']['pipeline-scm']['scm'][0]['git']['credentials-id']=config['credentials_id']
+        elem['job']['pipeline-scm']['script-path']='pipeline/'+ pipelinescript
+        break
+    return yamlcontent
+
 def inputfunc(str):
     with open(os.path.join(path,str)+'/pipeline_config.json') as f:
         input=json.load(f)
     return input
 
-def createreactjob(input,apprepo):
+"""def createreactjob(input,apprepo):
     pipeline_repo_path=os.path.join(path,config['repo_name'])
     if os.path.isdir(pipeline_repo_path):
         gitpull(pipeline_repo_path)
@@ -151,41 +151,41 @@ def createreactjob(input,apprepo):
             if(writeyaml(modifiedyaml,'./reactjob.yaml')):
                 os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./reactjob.yaml')
                 return ('react job created')
-            else:
-                return ('error writing yaml file')
-        else:
-            return ('Invalid Pipeline Type')
-
-"""def createangularjob(input,apprepo):
-    pipeline_repo_path=os.path.join(path,config['repo_name'])
-    if os.path.isdir(pipeline_repo_path):
-        gitpull(pipeline_repo_path)
-        yamlpath=os.path.join(pipeline_repo_path,"jobs/angularjob.yaml")
-        yamlcontent=readyaml(yamlpath)
-        pipelinescript=selectpipeline(input)
-        if pipelinescript!= False :
-            modifiedyaml=modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript)
-            if(writeyaml(modifiedyaml,'./angularjob.yaml')):
-                os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./angularjob.yaml')
-                return ('angular job created')
-            else:
-                return ('error writing yaml file')
-        else:
-            return ('Invalid Pipeline Type')
-    else:
-        gitclone(path,config['job_git_url'])
-        yamlpath=os.path.join(pipeline_repo_path,"jobs/angularjob.yaml")
-        yamlcontent=readyaml(yamlpath)
-        pipelinescript=selectpipeline(input)
-        if pipelinescript!= False :
-            modifiedyaml=modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript)
-            if(writeyaml(modifiedyaml,'./angularjob.yaml')):
-                os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./angularjob.yaml')
-                return ('angular job created')
             else:
                 return ('error writing yaml file')
         else:
             return ('Invalid Pipeline Type')"""
+
+def createangularjob(input,apprepo):
+    pipeline_repo_path=os.path.join(path,config['repo_name'])
+    if os.path.isdir(pipeline_repo_path):
+        gitpull(pipeline_repo_path)
+        yamlpath=os.path.join(pipeline_repo_path,"jobs/angularjob.yaml")
+        yamlcontent=readyaml(yamlpath)
+        pipelinescript=selectpipeline(input)
+        if pipelinescript!= False :
+            modifiedyaml=modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript)
+            if(writeyaml(modifiedyaml,'./angularjob.yaml')):
+                os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./angularjob.yaml')
+                return ('angular job created')
+            else:
+                return ('error writing yaml file')
+        else:
+            return ('Invalid Pipeline Type')
+    else:
+        gitclone(path,config['job_git_url'])
+        yamlpath=os.path.join(pipeline_repo_path,"jobs/angularjob.yaml")
+        yamlcontent=readyaml(yamlpath)
+        pipelinescript=selectpipeline(input)
+        if pipelinescript!= False :
+            modifiedyaml=modifyyamlforangular(yamlcontent,input,apprepo,pipelinescript)
+            if(writeyaml(modifiedyaml,'./angularjob.yaml')):
+                os.system('jenkins-jobs --conf ./jenkins_jobs.ini update ./angularjob.yaml')
+                return ('angular job created')
+            else:
+                return ('error writing yaml file')
+        else:
+            return ('Invalid Pipeline Type')
         
 """def createdotnetjob(input,apprepo):
     pipeline_repo_path=os.path.join(path,config['repo_name'])
@@ -242,7 +242,7 @@ def createreactjob(input,apprepo):
             return ('error writing yaml file')"""
 
     
-@app.route('/', methods=['GET','POST'])
+"""@app.route('/', methods=['GET','POST'])
 def home():
     data=request.json
     repo_path=os.path.join(path,request.json['repository']['name'])
@@ -272,7 +272,7 @@ def home():
            final_output=createspringjob(output,apprepo)
            return json.dumps(final_output)
         else:
-           return ('Invalid Application Type')
+           return ('Invalid Application Type')"""
 
 app.run(host="0.0.0.0")
 
